@@ -15,7 +15,6 @@ Meteor.methods({
       password: password
     });
     const { data } = res;
-    console.log(res)
     return data;
   },
 });

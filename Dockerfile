@@ -6,14 +6,9 @@ ENV NODE_TLS_REJECST_UNAUTHORIZED=0
 ENV METEOR_ALLOW_SUPERUSER=1
 
 WORKDIR /app
+COPY package*.json ./
 
-ADD package.json /app 
 RUN meteor npm install 
-
-ADD . .
-
-
-RUN chmod -R 777 /app/.meteor/
 
 EXPOSE 3000
 

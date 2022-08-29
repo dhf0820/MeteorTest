@@ -181,9 +181,17 @@ export default {
       try {
         const url =
           "Patient?system=62f1c5dab3070d0b40e7aac1&family=smart&given=na";
-        const res = await this.$axios.get(url);
-        console.log(res);
-        this.$store.dispatch("setResponse", { ...res.data });
+        const patientQueryPromise = function(url) {
+          return new Promise((resolver,reject)=>{
+          Meteor.call('patientTestQuery', url, (error, result) => {
+            if(error)reject(error);
+            resolver(result)
+          });
+        })
+        }
+        const data = await patientQueryPromise(url)
+        console.log(data);
+        this.$store.dispatch("setResponse", { ...data });
       } catch (e) {
         this.$store.dispatch("setResponse", { ...e });
         console.log(e);
@@ -192,9 +200,17 @@ export default {
     async onePatientTestQuery() {
       try {
         const url = "Patient?system=62f1c5dab3070d0b40e7aac1&Patient:12742661";
-        const res = await this.$axios.get(url);
-        this.$store.dispatch("setResponse", { ...res.data });
-        console.log(res);
+        const onePatientQueryPromise = function(url) {
+          return new Promise((resolver,reject)=>{
+          Meteor.call('onePatientTestQuery', url, (error, result) => {
+            if(error)reject(error);
+            resolver(result)
+          });
+        })
+        }
+        const data = await onePatientQueryPromise(url)
+        this.$store.dispatch("setResponse", { ...data });
+        console.log(data);
       } catch (e) {
         console.log("error in one patient");
         this.$store.dispatch("setResponse", { ...e });
@@ -205,10 +221,16 @@ export default {
     async onePatientWithHeader() {
       try {
         const url = "Patient?&Patient:12742661";
-        this.$axios.defaults.headers.common["Fhir-System"] =
-          "62f1c5dab3070d0b40e7aac1";
-        const res = await this.$axios.get(url);
-        this.$store.dispatch("setResponse", { ...res.data });
+        const onePatientHeaderPromise = function(url) {
+          return new Promise((resolver,reject)=>{
+          Meteor.call('onePatientTestQuery', url, (error, result) => {
+            if(error)reject(error);
+            resolver(result)
+          });
+        })
+        }
+        const data = await onePatientHeaderPromise("62f1c5dab3070d0b40e7aac1",url)
+        this.$store.dispatch("setResponse", { ...data });
         console.log(res);
       } catch (e) {
         console.log("error in one patient");

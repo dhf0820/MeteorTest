@@ -1,0 +1,7 @@
+{
+    "private": {
+        "VUE_APP_BASE_URL":"http://universalcharts.com:20100/api/rest/v1/"
+    },
+    "public": {
+    }
+}

@@ -177,7 +177,7 @@ export default {
     async handleClearResponse() {
       await this.$store.dispatch("setResponse", {});
     },
-    async patientTestQuery() {
+    /*async patientTestQuery() {
       try {
         const url =
           "Patient?system=62f1c5dab3070d0b40e7aac1&family=smart&given=na";
@@ -197,7 +197,7 @@ export default {
         console.log(e);
       }
     },
-    async onePatientTestQuery() {
+     async onePatientTestQuery() {
       try {
         const url = "Patient?system=62f1c5dab3070d0b40e7aac1&Patient:12742661";
         const onePatientQueryPromise = function(url) {
@@ -238,7 +238,7 @@ export default {
         console.log(this.$store.state.response);
         console.log(e);
       }
-    },
+    }, */
 
     async handlePostLogin() {
       try {

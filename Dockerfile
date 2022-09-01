@@ -12,4 +12,4 @@ RUN meteor npm install
 
 EXPOSE 3000
 
-CMD [ "meteor", "npm", "start" ]
+CMD [ "meteor", "npm", "run", "dev" ]

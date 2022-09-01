@@ -8,20 +8,10 @@ services:
     ports:
       - '3000:3000'
     environment:
-      ROOT_URL: ${APP_ROOT_URL:-http://localhost}
-      MONGO_URL: mongodb://mongo:27017/meteor
       PORT: 3000
     volumes:
       - node_modules:/app/node_modules
       - ./:/app
 
-  mongo:
-    image: mongo:latest
-    command:
-      - --storageEngine=wiredTiger
-    volumes:
-      - data:/data/db
-
 volumes:
   node_modules:
-  data:

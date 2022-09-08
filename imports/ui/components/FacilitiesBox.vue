@@ -70,6 +70,8 @@ export default {
         head: "Fhir-System",
         value: system.id,
       });
+      this.$store.dispatch("setUcurl",system.ucUrl)
+      console.log(this.$store.state)
     },
   },
   methods: {},

@@ -1,11 +1,16 @@
 import { Meteor } from "meteor/meteor";
-import axios from "../../request";
+import axios from "axios";
 
 Meteor.methods({
-  async patientTestQuery(url) {
-    const res = await axios.get(url);
-    const { data } = res;
+  async patientTestQuery(url,headers) {
+    try{
+      console.log(url,headers)
+    const response = await axios.get(url,{headers})
+    const { data } = response;
     return data;
+    }catch(e){
+      console.log(e)
+    }
   },
   async onePatientTestQuery(url) {
     const res = await axios.get(url);

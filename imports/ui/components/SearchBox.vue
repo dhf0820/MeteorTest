@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     async patientWithId(e) {
-      try {
+      /* try {
         e.preventDefault();
         this.$store.dispatch("setResponse", {});
         // const url = `Patient?system=${this.selectedSystem.id}&Patient:${this.patientId}`;
@@ -96,21 +96,52 @@ export default {
         const error = e.data ? { ...e.data.response } : { ...e };
         this.$store.dispatch("setResponse", { ...error });
         console.log(error);
+      } */
+      try {
+        e.preventDefault();
+        this.$store.dispatch("setResponse", {});
+        console.log('debugging', this.$store.state)
+        const getPatients = function(ucUrl,query,headers) {
+          return new Promise(function(resolver,reject){
+          Meteor.call('patientTestQuery', `${ucUrl}/${query}`, headers, (error, result) => {
+            if(error)reject(error);
+            resolver(result)
+          });
+        })
+        }
+        const res = await getPatients(this.$store.state.ucUrl,this.patientId,this.$store.state.headers);
+        console.log(res)
+        this.$store.dispatch("setResponse", res);
+        console.log(res);
+      } catch (e) {
+        console.log("error in patient with query");
+        const error = e.data ? { ...e.data.response } : { ...e };
+        this.$store.dispatch("setResponse", { ...error });
+        console.log(e);
       }
     },
     async patientWithQuery(e) {
       try {
         e.preventDefault();
         this.$store.dispatch("setResponse", {});
-        // const url = `Patient?system=${this.selectedSystem.id}&${this.query}`;
-        const res = await this.$axios.get(this.rawQuery);
-        this.$store.dispatch("setResponse", { ...res.data });
+        console.log('debugging', this.$store.state)
+        const getPatients = function(ucUrl,query,headers) {
+          return new Promise(function(resolver,reject){
+          Meteor.call('patientTestQuery', `${ucUrl}/${query}`, headers, (error, result) => {
+            if(error)reject(error);
+            resolver(result)
+          });
+        })
+        }
+        const res = await getPatients(this.$store.state.ucUrl,this.query,this.$store.state.headers);
+        console.log(res)
+        this.$store.dispatch("setResponse", res);
         console.log(res);
       } catch (e) {
-        console.log("error in patient with id");
+        console.log("error in patient with query");
         const error = e.data ? { ...e.data.response } : { ...e };
         this.$store.dispatch("setResponse", { ...error });
-        console.log(error);
+        console.log(e);
       }
     },
     generateQuery(val) {

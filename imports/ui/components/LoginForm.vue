@@ -88,9 +88,9 @@
             <button type="button" @click="handlePostLogin">
               Login with POST
             </button>
-            <button type="button" @click="handleGetLogin">
+            <!-- <button type="button" @click="handleGetLogin">
               Login with GET
-            </button>
+            </button> -->
           </div>
         </div>
       </form>
@@ -101,21 +101,6 @@
     <div>
       <FacilitiesBox v-if="facilitues" :facilitues="facilitues" />
     </div>
-    <!-- <div>
-      <button @click="patientTestQuery">
-        Patient With system (with family & given) in query
-      </button>
-    </div>
-    <div>
-      <button @click="onePatientTestQuery">
-        Patient With system (Patient:12742661) in query
-      </button>
-    </div>
-    <div>
-      <button @click="onePatientWithHeader">
-        Patient (Patient:12742661) With Fhir-System in header
-      </button>
-    </div> -->
 
     <div>
       <button type="button" @click="() => (showResponse = !showResponse)">
@@ -177,68 +162,6 @@ export default {
     async handleClearResponse() {
       await this.$store.dispatch("setResponse", {});
     },
-    /*async patientTestQuery() {
-      try {
-        const url =
-          "Patient?system=62f1c5dab3070d0b40e7aac1&family=smart&given=na";
-        const patientQueryPromise = function(url) {
-          return new Promise((resolver,reject)=>{
-          Meteor.call('patientTestQuery', url, (error, result) => {
-            if(error)reject(error);
-            resolver(result)
-          });
-        })
-        }
-        const data = await patientQueryPromise(url)
-        console.log(data);
-        this.$store.dispatch("setResponse", { ...data });
-      } catch (e) {
-        this.$store.dispatch("setResponse", { ...e });
-        console.log(e);
-      }
-    },
-     async onePatientTestQuery() {
-      try {
-        const url = "Patient?system=62f1c5dab3070d0b40e7aac1&Patient:12742661";
-        const onePatientQueryPromise = function(url) {
-          return new Promise((resolver,reject)=>{
-          Meteor.call('onePatientTestQuery', url, (error, result) => {
-            if(error)reject(error);
-            resolver(result)
-          });
-        })
-        }
-        const data = await onePatientQueryPromise(url)
-        this.$store.dispatch("setResponse", { ...data });
-        console.log(data);
-      } catch (e) {
-        console.log("error in one patient");
-        this.$store.dispatch("setResponse", { ...e });
-        console.log(this.$store.state.response);
-        console.log(e);
-      }
-    },
-    async onePatientWithHeader() {
-      try {
-        const url = "Patient?&Patient:12742661";
-        const onePatientHeaderPromise = function(url) {
-          return new Promise((resolver,reject)=>{
-          Meteor.call('onePatientTestQuery', url, (error, result) => {
-            if(error)reject(error);
-            resolver(result)
-          });
-        })
-        }
-        const data = await onePatientHeaderPromise("62f1c5dab3070d0b40e7aac1",url)
-        this.$store.dispatch("setResponse", { ...data });
-        console.log(res);
-      } catch (e) {
-        console.log("error in one patient");
-        this.$store.dispatch("setResponse", { ...e });
-        console.log(this.$store.state.response);
-        console.log(e);
-      }
-    }, */
 
     async handlePostLogin() {
       try {

@@ -10,6 +10,7 @@ export default new Vuex.Store({
     allowCookies: false,
     headerChoice: 0,
     headers: {},
+    ucUrl: ''
   },
   getters: {},
   mutations: {
@@ -45,6 +46,9 @@ export default new Vuex.Store({
       setTimeout(() => null, 50);
       handleAxiosHeader(state.headerChoice, state.headers);
     },
+    SET_UCURL(state, url){
+      state.ucUrl = url;
+    }
   },
   actions: {
     setResponse({ commit }, data) {
@@ -66,6 +70,9 @@ export default new Vuex.Store({
     checkHeaders() {
       handleAxiosHeader();
     },
+    setUcurl({ commit}, value) {
+      commit("SET_UCURL", value)
+    }
   },
   modules: {},
 });

@@ -111,7 +111,7 @@ export default {
         }
         const res = await getPatients(this.$store.state.ucUrl,this.patientId,this.$store.state.headers);
         console.log(res)
-        this.$store.dispatch("setResponse", res);
+        this.$store.dispatch("setResponse", {url:`${this.$store.state.ucUrl}/${this.patientId}`, res});
         console.log(res);
       } catch (e) {
         console.log("error in patient with query");
@@ -135,7 +135,7 @@ export default {
         }
         const res = await getPatients(this.$store.state.ucUrl,this.query,this.$store.state.headers);
         console.log(res)
-        this.$store.dispatch("setResponse", res);
+        this.$store.dispatch("setResponse", {url:`${this.$store.state.ucUrl}/${this.query}`, res});
         console.log(res);
       } catch (e) {
         console.log("error in patient with query");

@@ -1,6 +1,5 @@
 {
     "private": {
-        "LOGIN_POST_BASE_URL":"http://universalcharts.com:30100/api/rest/v1/"
     },
     "public": {
     }

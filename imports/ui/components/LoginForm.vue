@@ -182,15 +182,7 @@ export default {
         this.facilitues = data?.facilitues;
         const token = data.token;
         this.$store.dispatch("setHeader", {
-          head: "PatientId",
-          value: token,
-        });
-        this.$store.dispatch("setHeader", {
           head: "Authorization",
-          value: token,
-        });
-        this.$store.dispatch("setHeader", {
-          head: "Authentication",
           value: token,
         });
       } catch (e) {
